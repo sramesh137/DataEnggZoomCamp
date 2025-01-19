@@ -1,7 +1,5 @@
-# DataEnggZoomCamp
-Data Engineering Zoomcamp 2025 Cohort
-
 # DataEnggZoomCamp: My Personal Learning Journey 🚀
+Data Engineering Zoomcamp 2025 Cohort
 
 ## 🌟 About This Repository
 
