@@ -28,11 +28,6 @@ Terraform
 - [ ] Week 4: Analytics Engineering
 - [ ] Week 5: Batch Processing
 - [ ] Week 6: Streaming
-- [ ] Weeks 7-9: Capstone Project
-
-## 🤝 Contributing
-
-Feel free to explore, provide feedback, or suggest improvements!
 
 ## 📫 Contact
 
