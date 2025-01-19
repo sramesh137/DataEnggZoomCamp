@@ -14,11 +14,11 @@ This repository documents my participation in the Data Engineering Zoomcamp 2025
 
 ## 🛠 Technologies & Tools
 
-Docker
-Postgres
-Python
-Google Cloud
-Terraform
+- Docker
+- Postgres
+- Python
+- Google Cloud
+- Terraform
 
 ## 🗓 Course Progress
 
