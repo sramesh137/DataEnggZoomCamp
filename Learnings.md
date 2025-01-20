@@ -64,7 +64,6 @@ To run Docker with the `python:3.12.8` image in interactive mode and use `bash` 
 
 This command will start a Docker container with the `python:3.12.8` image in interactive mode and use `bash` as the entrypoint.
 
-Postgres Setup
 ## PostgreSQL Setup using Docker Compose
 
 To set up PostgreSQL using Docker Compose, follow these steps:
