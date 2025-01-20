@@ -1,3 +1,11 @@
+## Table of Contents
+
+- [Introduction to Docker](#introduction-to-docker)
+- [Setting up Docker](#setting-up-docker)
+- [Docker Desktop Installation on Mac](#docker-desktop-installation-on-mac)
+- [PostgreSQL Setup using Docker Compose](#postgresql-setup-using-docker-compose)
+- [Accessing pgAdmin](#accessing-pgadmin)
+
 # Introduction to Docker
 
 Docker is a platform designed to help developers build, share, and run applications with containers. Containers allow you to package an application with all its dependencies into a standardized unit for software development.
