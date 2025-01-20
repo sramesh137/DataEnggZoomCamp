@@ -20,7 +20,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - vol-pgadmin_data:/var/lib/pgadmin  
+      - vol-pgadmin_data:/var/lib/pgadmin 
 
 volumes:  
   vol-pgdata:

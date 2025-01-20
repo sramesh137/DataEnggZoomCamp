@@ -27,3 +27,69 @@ pip 24.3.1 from /usr/local/lib/python3.12/site-packages/pip (python 3.12)
 ```
 
 ### Question :2 Understanding Docker networking and docker-compose
+
+Use the docker-compose.yml to create the postgresql and the pgadmin image.
+
+```
+
+➜  Week 1 git:(main) ✗ docker-compose up -d
+[+] Running 5/5
+ ✔ Network week1_default      Created                                                                                                                                       0.0s 
+ ✔ Volume "vol-pgdata"        Created                                                                                                                                       0.0s 
+ ✔ Volume "vol-pgadmin_data"  Created                                                                                                                                       0.0s 
+ ✔ Container pgadmin          Started                                                                                                                                       0.2s 
+ ✔ Container postgres         Started                                       
+```
+
+For the data ingestion, I created belwo tables by logged into the `pgadmin`
+
+```
+
+CREATE TABLE green_taxi_trips (
+    VendorId INT,
+    LpepPickupDatetime TIMESTAMP,
+    LpepDropoffDatetime TIMESTAMP,
+    StoreAndFwdFlag CHAR(1),
+    RatecodeId INT,
+    PuLocationId INT,
+    DoLocationId INT,
+    PassengerCount INT,
+    TripDistance NUMERIC(8,2),
+    FareAmount NUMERIC(8,2),
+    Extra NUMERIC(8,2),
+    MtaTax NUMERIC(8,2),
+    TipAmount NUMERIC(8,2),
+    TollsAmount NUMERIC(8,2),
+    EhailFee NUMERIC(8,2),
+    ImprovementSurcharge NUMERIC(8,2),
+    TotalAmount NUMERIC(8,2),
+    PaymentType INT,
+    TripType INT,
+    CongestionSurcharge NUMERIC(8,2)
+);
+```
+
+Taxi_zone_lookup Table:
+
+```
+CREATE TABLE TaxiZoneLookup (
+    LocationId INT PRIMARY KEY,
+    Borough VARCHAR(100),
+    Zone VARCHAR(100),
+    ServiceZone VARCHAR(100)
+);
+```
+
+Then I does copy the .csv files into the pgAdmin, and using the pgAdmin, 
+1. I does create teh table and 
+2. then import the csv
+
+Below are the commands used
+
+```sql
+➜  Week 1 git:(main) ✗ docker cp green_tripdata_2019-10.csv pgadmin:/var/lib/pgadmin/storage/pgadmin_pgadmin.com
+Successfully copied 43.5MB to pgadmin:/var/lib/pgadmin/storage/pgadmin_pgadmin.com
+➜  Week 1 git:(main) ✗ docker cp taxi_zone_lookup.csv pgadmin:/var/lib/pgadmin/storage/pgadmin_pgadmin.com 
+Successfully copied 14.3kB to pgadmin:/var/lib/pgadmin/storage/pgadmin_pgadmin.com
+```
+
