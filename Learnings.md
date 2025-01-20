@@ -48,3 +48,134 @@ You have successfully installed Docker Desktop on your Mac.
 
 <img width="804" alt="image" src="https://github.com/user-attachments/assets/f4a689e9-53bf-4505-b1ed-88e243a7dbf6" />
 
+## Run Docker with Python Image
+
+To run Docker with the `python:3.12.8` image in interactive mode and use `bash` as the entrypoint, follow these steps:
+
+1. **Pull the Python Docker image:**
+    ```sh
+    docker pull python:3.12.8
+    ```
+
+2. **Run the Docker container:**
+    ```sh
+    docker run -it --entrypoint bash python:3.12.8
+    ```
+
+This command will start a Docker container with the `python:3.12.8` image in interactive mode and use `bash` as the entrypoint.
+
+Postgres Setup
+## PostgreSQL Setup using Docker Compose
+
+To set up PostgreSQL using Docker Compose, follow these steps:
+
+1. **Create a `docker-compose.yml` file:**
+
+    ```yaml
+    services:
+    db:
+        container_name: postgres
+        image: postgres:17-alpine
+        environment:
+        POSTGRES_USER: 'postgres'
+        POSTGRES_PASSWORD: 'postgres'
+        POSTGRES_DB: 'ny_taxi'
+        ports:
+        - '5433:5432'
+        volumes:
+        - vol-pgdata:/var/lib/postgresql/data
+
+    pgadmin:
+        container_name: pgadmin
+        image: dpage/pgadmin4:latest
+        environment:
+        PGADMIN_DEFAULT_EMAIL: "pgadmin@pgadmin.com"
+        PGADMIN_DEFAULT_PASSWORD: "pgadmin"
+        ports:
+        - "8080:80"
+        volumes:
+        - vol-pgadmin_data:/var/lib/pgadmin 
+
+    volumes:  
+    vol-pgdata:
+        name: vol-pgdata
+    vol-pgadmin_data:
+        name: vol-pgadmin_data
+
+    ```
+
+2. **Start the PostgreSQL container:**
+
+    Navigate to the directory containing the `docker-compose.yml` file and run:
+
+    ```sh
+    ➜  Week 1 git:(main) ✗ docker-compose up -d
+    [+] Running 5/5
+     ✔ Network week1_default      Created                                                                                                                                       0.0s 
+     ✔ Volume "vol-pgdata"        Created                                                                                                                                       0.0s 
+     ✔ Volume "vol-pgadmin_data"  Created                                                                                                                                       0.0s 
+     ✔ Container pgadmin          Started                                                                                                                                       0.2s 
+     ✔ Container postgres         Started
+    ```
+
+    This command will start the PostgreSQL container in detached mode.
+
+3. **Verify the PostgreSQL container is running:**
+
+    ```sh
+    docker-compose ps
+    ```
+
+    You should see the PostgreSQL container listed and its status as "Up".
+
+4. **Connect to the PostgreSQL database:**
+
+    You can connect to the PostgreSQL database using any PostgreSQL client. For example, using `psql`:
+
+    ```sh
+    psql -h localhost -U exampleuser -d exampledb
+    ```
+    
+    Enter the password `examplepass` when prompted.
+
+    You have successfully set up PostgreSQL using Docker Compose.
+## Accessing pgAdmin
+
+To access pgAdmin, open your web browser and navigate to `http://localhost:8080`. Use the following credentials to log in:
+
+- **Email:** pgadmin@pgadmin.com
+- **Password:** pgadmin
+
+Once logged in, you can add a new server to connect to your PostgreSQL database.
+
+## Adding a New Server in pgAdmin
+
+1. **Open pgAdmin:**
+    - Navigate to `http://localhost:8080` in your web browser.
+    - Log in with the credentials provided above.
+
+2. **Add a New Server:**
+    - Right-click on "Servers" in the left-hand menu and select "Create" > "Server...".
+    - In the "General" tab, enter a name for your server (e.g., `PostgreSQL`).
+
+3. **Configure Connection:**
+    - Switch to the "Connection" tab.
+    - Enter the following details:
+        - **Host name/address:** `postgres`
+        - **Port:** `5432`
+        - **Username:** `postgres`
+        - **Password:** `postgres`
+    - Click "Save" to add the server.
+
+You should now see your PostgreSQL server listed under "Servers" in pgAdmin. You can expand it to view and manage your databases.
+
+## Stopping the Containers
+
+To stop the PostgreSQL and pgAdmin containers, navigate to the directory containing your `docker-compose.yml` file and run:
+
+```sh
+docker-compose down
+```
+
+This command will stop and remove the containers defined in the `docker-compose.yml` file.
+
