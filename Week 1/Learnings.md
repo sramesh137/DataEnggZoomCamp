@@ -189,45 +189,45 @@ This command will stop and remove the containers defined in the `docker-compose.
 
 ## Data Ingestion
 
-    For the data ingestion, I created the following tables by logging into `pgAdmin`:
+For the data ingestion, I created the following tables by logging into `pgAdmin`:
 
 ### Green Taxi Trips Table
 
-    ```sql
-    CREATE TABLE green_taxi_trips (
-        VendorId INT,
-        LpepPickupDatetime TIMESTAMP,
-        LpepDropoffDatetime TIMESTAMP,
-        StoreAndFwdFlag CHAR(1),
-        RatecodeId INT,
-        PuLocationId INT,
-        DoLocationId INT,
-        PassengerCount INT,
-        TripDistance NUMERIC(8,2),
-        FareAmount NUMERIC(8,2),
-        Extra NUMERIC(8,2),
-        MtaTax NUMERIC(8,2),
-        TipAmount NUMERIC(8,2),
-        TollsAmount NUMERIC(8,2),
-        EhailFee NUMERIC(8,2),
-        ImprovementSurcharge NUMERIC(8,2),
-        TotalAmount NUMERIC(8,2),
-        PaymentType INT,
-        TripType INT,
-        CongestionSurcharge NUMERIC(8,2)
-    );
-    ```
+```sql
+CREATE TABLE green_taxi_trips (
+    VendorId INT,
+    LpepPickupDatetime TIMESTAMP,
+    LpepDropoffDatetime TIMESTAMP,
+    StoreAndFwdFlag CHAR(1),
+    RatecodeId INT,
+    PuLocationId INT,
+    DoLocationId INT,
+    PassengerCount INT,
+    TripDistance NUMERIC(8,2),
+    FareAmount NUMERIC(8,2),
+    Extra NUMERIC(8,2),
+    MtaTax NUMERIC(8,2),
+    TipAmount NUMERIC(8,2),
+    TollsAmount NUMERIC(8,2),
+    EhailFee NUMERIC(8,2),
+    ImprovementSurcharge NUMERIC(8,2),
+    TotalAmount NUMERIC(8,2),
+    PaymentType INT,
+    TripType INT,
+    CongestionSurcharge NUMERIC(8,2)
+);
+```
 
 ### Taxi Zone Lookup Table
 
-    ```sql
-    CREATE TABLE TaxiZoneLookup (
-        LocationId INT PRIMARY KEY,
-        Borough VARCHAR(100),
-        Zone VARCHAR(100),
-        ServiceZone VARCHAR(100)
-    );
-    ```
+```sql
+CREATE TABLE TaxiZoneLookup (
+    LocationId INT PRIMARY KEY,
+    Borough VARCHAR(100),
+    Zone VARCHAR(100),
+    ServiceZone VARCHAR(100)
+);
+```
 
 Then, I copied the `.csv` files into `pgAdmin` and used `pgAdmin` to:
 
@@ -236,9 +236,9 @@ Then, I copied the `.csv` files into `pgAdmin` and used `pgAdmin` to:
 
 Below are the commands used:
 
-    ```sh
-    ➜  Week 1 git:(main) ✗ docker cp green_tripdata_2019-10.csv pgadmin:/var/lib/pgadmin/storage/pgadmin_pgadmin.com
-    Successfully copied 43.5MB to pgadmin:/var/lib/pgadmin/storage/pgadmin_pgadmin.com
-    ➜  Week 1 git:(main) ✗ docker cp taxi_zone_lookup.csv pgadmin:/var/lib/pgadmin/storage/pgadmin_pgadmin.com 
-    Successfully copied 14.3kB to pgadmin:/var/lib/pgadmin/storage/pgadmin_pgadmin.com
-    ```
+```bash
+➜  Week 1 git:(main) ✗ docker cp green_tripdata_2019-10.csv pgadmin:/var/lib/pgadmin/storage/pgadmin_pgadmin.com
+Successfully copied 43.5MB to pgadmin:/var/lib/pgadmin/storage/pgadmin_pgadmin.com
+➜  Week 1 git:(main) ✗ docker cp taxi_zone_lookup.csv pgadmin:/var/lib/pgadmin/storage/pgadmin_pgadmin.com 
+Successfully copied 14.3kB to pgadmin:/var/lib/pgadmin/storage/pgadmin_pgadmin.com
+ ```
